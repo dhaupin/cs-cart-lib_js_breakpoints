@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<addon scheme="2.0" edition_type="ROOT,ULT:VENDOR">
+    <id>lib_js_breakpoints</id>
+    <version>1.0</version>
+	<default_language>en</default_language>
+	<name>Library - JS Breakpoints</name>
+	<description><![CDATA[DEPENDENCY ADDON: Uses CSS breakpoints to apply attributes to HTML for Javascript to use, on the fly. Requires underscore/lodash. <a href="https://github.com/dhaupin/cs-cart-lib_underscore_js" target="_blank">Found here.</a>]]></description>
+    <priority>10</priority>
+    <position>0</position>
+	<status>active</status>
+    <default_language>en</default_language>
+	<dependencies>lib_underscore_js</dependencies>
+    <authors>
+        <author>
+            <name>Dhaupin - CreadevDotOrg</name>
+            <email>dhaupin@creadev.org</email>
+            <url>https://creadev.org</url>
+        </author>
+    </authors>
+    <!--Prepend or append the common tab list with add-on tabs (default defined as append)-->
+    <tab_order>prepend</tab_order>
+
+    <settings layout="popup">
+        <sections>
+            <!-- @id - Registry::get('addons.addon_id.setting_id') -->
+            <section id="main">
+				<name>Global</name>
+                <items>
+					<item id="lib_js_brk_enable">
+						<name><![CDATA[Enable Addon?]]></name>
+						<tooltip><![CDATA[Allows you to enable/disable this addon on a per-store basis.]]></tooltip>
+                        <type>checkbox</type>
+						<default_value>Y</default_value>
+					</item>
+					<item id="lib_js_brk_defer">
+						<name><![CDATA[Allow Deferring?]]></name>
+						<tooltip><![CDATA[For maximum compatibility, do not let CS-Cart move (defer) this script into the footer. If you know there will be no compatibility isses, allow this for more performance.]]></tooltip>
+                        <type>checkbox</type>
+						<default_value>N</default_value>
+					</item>
+					<item id="lib_js_brk_focal">
+						<name><![CDATA[Breakpoint Style]]></name>
+						<tooltip><![CDATA[Whether breakpoints should trigger based on min or max width.]]></tooltip>
+                        <type>selectbox</type>
+						<variants>
+							<item id="max_width"><name>max-width</name></item>
+							<item id="min_width"><name>min-width</name></item>
+						</variants>
+						<default_value>max-width</default_value>
+					</item>
+					<item id="lib_js_brk_xl">
+						<name><![CDATA[Extra Large Breakpoint]]></name>
+						<tooltip><![CDATA[A breakpoint in px where the extra-large range is triggered. Example, 1024px.]]></tooltip>
+						<default_value>1024px</default_value>
+                        <type>input</type>
+					</item>
+					<item id="lib_js_brk_lg">
+						<name><![CDATA[Large Breakpoint]]></name>
+						<tooltip><![CDATA[A breakpoint in px where the large range is triggered. Example, 768px.]]></tooltip>
+                        <default_value>768px</default_value>
+						<type>input</type>
+					</item>
+					<item id="lib_js_brk_med">
+						<name><![CDATA[Medium Breakpoint]]></name>
+						<tooltip><![CDATA[A breakpoint in px where the medium range is triggered. Example, 640px.]]></tooltip>
+                        <default_value>640px</default_value>
+						<type>input</type>
+					</item>
+					<item id="lib_js_brk_sm">
+						<name><![CDATA[Small Breakpoint]]></name>
+						<tooltip><![CDATA[A breakpoint in px where the small range is triggered. Example, 480px.]]></tooltip>
+                        <default_value>480px</default_value>
+						<type>input</type>
+					</item>
+					<item id="lib_js_brk_xsm">
+						<name><![CDATA[Tiny Breakpoint]]></name>
+						<tooltip><![CDATA[A breakpoint in px where the tiny range is triggered. Example, 320px.]]></tooltip>
+                        <default_value>320px</default_value>
+						<type>input</type>
+					</item>
+					<item id="lib_js_brk_wait">
+						<name><![CDATA[Listener Wait]]></name>
+						<tooltip><![CDATA[The amount of milliseconds the UI should wait before looking for a new breakpoint. Example, 100.]]></tooltip>
+                        <default_value>100</default_value>
+						<type>input</type>
+					</item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+</addon>
