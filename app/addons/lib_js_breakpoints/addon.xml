@@ -1,91 +1,168 @@
 <?xml version="1.0"?>
 <addon scheme="2.0" edition_type="ROOT,ULT:VENDOR">
-    <id>lib_js_breakpoints</id>
-    <version>1.0</version>
+	<id>php_live_support</id>
+	<version>1.1</version>
 	<default_language>en</default_language>
-	<name>Library - JS Breakpoints</name>
-	<description><![CDATA[DEPENDENCY ADDON: Uses CSS breakpoints to apply attributes to HTML for Javascript to use, on the fly. Requires underscore/lodash. <a href="https://github.com/dhaupin/cs-cart-lib_underscore_js" target="_blank">Found here.</a>]]></description>
-    <priority>10</priority>
-    <position>0</position>
+	<name>phpLive! Support</name>
+	<description><![CDATA[Adds the phpLive chat support system to your storefronts. <a href="https://www.phplivesupport.com/clients/downloads.php" target="_blank">Download Here</a>.]]></description>
+	<priority>1000000</priority>
+	<position>0</position>
 	<status>active</status>
-    <default_language>en</default_language>
-	<dependencies>lib_underscore_js</dependencies>
-    <authors>
-        <author>
-            <name>Dhaupin - CreadevDotOrg</name>
-            <email>dhaupin@creadev.org</email>
-            <url>https://creadev.org</url>
-        </author>
-    </authors>
-    <!--Prepend or append the common tab list with add-on tabs (default defined as append)-->
-    <tab_order>prepend</tab_order>
+	<default_language>en</default_language>
+	<authors>
+		<author>
+			<name>Dhaupin - CreadevDotOrg</name>
+			<email>dhaupin@creadev.org</email>
+			<url>https://creadev.org</url>
+		</author>
+	</authors>
+	<!--Prepend or append the common tab list with add-on tabs (default defined as append)-->
+	<tab_order>prepend</tab_order>
 
-    <settings layout="popup">
-        <sections>
-            <!-- @id - Registry::get('addons.addon_id.setting_id') -->
-            <section id="main">
+	<settings layout="popup">
+		<sections>
+			<!-- @id - Registry::get('addons.addon_id.setting_id') -->
+			<section id="main">
 				<name>Global</name>
-                <items>
-					<item id="lib_js_brk_enable">
+				<items>
+					<item id="php_live_enable">
 						<name><![CDATA[Enable Addon?]]></name>
 						<tooltip><![CDATA[Allows you to enable/disable this addon on a per-store basis.]]></tooltip>
-                        <type>checkbox</type>
+						<type>checkbox</type>
 						<default_value>Y</default_value>
 					</item>
-					<item id="lib_js_brk_defer">
-						<name><![CDATA[Allow Deferring?]]></name>
-						<tooltip><![CDATA[For maximum compatibility, do not let CS-Cart move (defer) this script into the footer. If you know there will be no compatibility isses, allow this for more performance.]]></tooltip>
-                        <type>checkbox</type>
-						<default_value>N</default_value>
+					<item id="php_live_domain">
+						<name><![CDATA[Base Domain]]></name>
+						<tooltip><![CDATA[The domain where live chat is installed, including protocol and subfolder. Please note that protocol can be reletive (//). Do not include trailing slash. Example: https://chat.example.com.]]></tooltip>
+						<type>input</type>
 					</item>
-					<item id="lib_js_brk_focal">
-						<name><![CDATA[Breakpoint Style]]></name>
-						<tooltip><![CDATA[Whether breakpoints should trigger based on min or max width.]]></tooltip>
-                        <type>selectbox</type>
+					<item id="php_live_zindex">
+						<name><![CDATA[Z-Index]]></name>
+						<tooltip><![CDATA[Z-index is a CSS property that sets position in the layers of the page. The greater the z-index, the "higher" the element is in the stack. Defaults to 1000. Example: 3000]]></tooltip>
+						<type>input</type>
+					</item>
+					<item id="php_live_id">
+						<name><![CDATA[ID]]></name>
+						<tooltip><![CDATA[The unique ID used for the live chat widget. This value MUST be a string of numbers. Example: 1234567890. If no value is supplied, a timestamp is used for ID.]]></tooltip>
+						<type>input</type>
+					</item>
+					<item id="php_live_render">
+						<name><![CDATA[Rendering]]></name>
+						<tooltip><![CDATA[The method used to load the phpLive script.]]></tooltip>
+						<type>selectbox</type>
 						<variants>
-							<item id="max_width"><name>max-width</name></item>
-							<item id="min_width"><name>min-width</name></item>
+							<item id="script_async"><name>Append Script (Async)</name></item>
+							<item id="script_defer"><name>Include Script (Defer)</name></item>
 						</variants>
-						<default_value>max-width</default_value>
+						<default_value>Append Script (Async)</default_value>
 					</item>
-					<item id="lib_js_brk_xl">
-						<name><![CDATA[Extra Large Breakpoint]]></name>
-						<tooltip><![CDATA[A breakpoint in px where the extra-large range is triggered. Example, 1024px.]]></tooltip>
-						<default_value>1024px</default_value>
-                        <type>input</type>
+				</items>
+			</section>
+			<section id="desktop">
+				<name>Desktop</name>
+				<items>
+					<item id="php_live_img_online">
+						<name><![CDATA[Online Image]]></name>
+						<tooltip><![CDATA[The image displayed for the chat online button.]]></tooltip>
+						<type>file</type>
 					</item>
-					<item id="lib_js_brk_lg">
-						<name><![CDATA[Large Breakpoint]]></name>
-						<tooltip><![CDATA[A breakpoint in px where the large range is triggered. Example, 768px.]]></tooltip>
-                        <default_value>768px</default_value>
+					<item id="php_live_img_offline">
+						<name><![CDATA[Offline Image]]></name>
+						<tooltip><![CDATA[The image displayed for the chat offline button.]]></tooltip>
+						<type>file</type>
+					</item>
+					<item id="php_live_position">
+						<name><![CDATA[Position]]></name>
+						<tooltip><![CDATA[The location on the page for the online/offline button. If you choose right or left middle, adjust with rotation and offset below.]]></tooltip>
+						<type>selectbox</type>
+						<variants>
+							<item id="bottom-right"><name>Bottom Right</name></item>
+							<item id="bottom-mid"><name>Bottom Middle</name></item>
+							<item id="bottom-left"><name>Bottom Left</name></item>
+							<item id="top-right"><name>Top Right</name></item>
+							<item id="top-mid"><name>Top Middle</name></item>
+							<item id="top-left"><name>Top Left</name></item>
+							<item id="mid-right"><name>Middle Right</name></item>
+							<item id="mid-left"><name>Middle Left</name></item>
+							<item id="hidden"><name>Hidden</name></item>
+						</variants>
+						<default_value>Bottom Right</default_value>
+					</item>
+					<item id="php_live_rotation">
+						<name><![CDATA[Rotation]]></name>
+						<tooltip><![CDATA[The rotation of the online/offline button. Use for attahching to the left or right middle position. Remember to include the deg. Example: -90deg]]></tooltip>
 						<type>input</type>
 					</item>
-					<item id="lib_js_brk_med">
-						<name><![CDATA[Medium Breakpoint]]></name>
-						<tooltip><![CDATA[A breakpoint in px where the medium range is triggered. Example, 640px.]]></tooltip>
-                        <default_value>640px</default_value>
+					<item id="php_live_offset">
+						<name><![CDATA[Offset]]></name>
+						<tooltip><![CDATA[The bottom offset of the online/offline button while in right or left middle position. Use combined with rotation to fit the button correctly. Example: 10px]]></tooltip>
 						<type>input</type>
 					</item>
-					<item id="lib_js_brk_sm">
-						<name><![CDATA[Small Breakpoint]]></name>
-						<tooltip><![CDATA[A breakpoint in px where the small range is triggered. Example, 480px.]]></tooltip>
-                        <default_value>480px</default_value>
+					<item id="php_live_extra">
+						<name><![CDATA[Extra CSS]]></name>
+						<tooltip><![CDATA[Extra CSS styles that will be included on the online/offline button. Example: color: #434343;]]></tooltip>
 						<type>input</type>
 					</item>
-					<item id="lib_js_brk_xsm">
-						<name><![CDATA[Tiny Breakpoint]]></name>
-						<tooltip><![CDATA[A breakpoint in px where the tiny range is triggered. Example, 320px.]]></tooltip>
-                        <default_value>320px</default_value>
+				</items>
+			</section>
+			<section id="mobile">
+				<name>Mobile</name>
+				<items>
+					<item id="php_live_mob_enable">
+						<name><![CDATA[Enable Mobile Support?]]></name>
+						<tooltip><![CDATA[Allows you to enable/disable support for mobile breakpoints.]]></tooltip>
+						<type>checkbox</type>
+						<default_value>Y</default_value>
+					</item>
+					<!--<item id="php_live_mob_img_online">
+						<name><![CDATA[Mobile Online Image]]></name>
+						<tooltip><![CDATA[The image displayed for the chat online button.]]></tooltip>
+						<type>file</type>
+					</item>
+					<item id="php_live_mob_img_offline">
+						<name><![CDATA[Mobile Offline Image]]></name>
+						<tooltip><![CDATA[The image displayed for the chat offline button.]]></tooltip>
+						<type>file</type>
+					</item>-->
+					<item id="php_live_mob_breakpoint">
+						<name><![CDATA[Mobile Breakpoint]]></name>
+						<tooltip><![CDATA[The breakpoint at which online/offline button changes to mobile settings. Example: 768px]]></tooltip>
 						<type>input</type>
 					</item>
-					<item id="lib_js_brk_wait">
-						<name><![CDATA[Listener Wait]]></name>
-						<tooltip><![CDATA[The amount of milliseconds the UI should wait before looking for a new breakpoint. Example, 100.]]></tooltip>
-                        <default_value>100</default_value>
+					<item id="php_live_mob_position">
+						<name><![CDATA[Mobile Position]]></name>
+						<tooltip><![CDATA[The location on the page for the online/offline button. If you choose right or left middle, adjust with rotation and offset below.]]></tooltip>
+						<type>selectbox</type>
+						<variants>
+							<item id="bottom-right"><name>Bottom Right</name></item>
+							<item id="bottom-mid"><name>Bottom Middle</name></item>
+							<item id="bottom-left"><name>Bottom Left</name></item>
+							<item id="top-right"><name>Top Right</name></item>
+							<item id="top-mid"><name>Top Middle</name></item>
+							<item id="top-left"><name>Top Left</name></item>
+							<item id="mid-right"><name>Middle Right</name></item>
+							<item id="mid-left"><name>Middle Left</name></item>
+							<item id="hidden"><name>Hidden</name></item>
+						</variants>
+						<default_value>Bottom Right</default_value>
+					</item>
+					<item id="php_live_mob_rotation">
+						<name><![CDATA[Mobile Rotation]]></name>
+						<tooltip><![CDATA[The rotation of the online/offline button. Use for attahching to the left or right middle position. Remember to include the deg. Example: -90deg]]></tooltip>
 						<type>input</type>
 					</item>
-                </items>
-            </section>
-        </sections>
-    </settings>
+					<item id="php_live_mob_offset">
+						<name><![CDATA[Mobile Offset]]></name>
+						<tooltip><![CDATA[The bottom offset of the online/offline button while in right or left middle position. Use combined with rotation to fit the button correctly. Example: 10px]]></tooltip>
+						<type>input</type>
+					</item>
+					<item id="php_live_mob_extra">
+						<name><![CDATA[Mobile Extra CSS]]></name>
+						<tooltip><![CDATA[Extra CSS styles that will be included on the online/offline button. Example: color: #434343;]]></tooltip>
+						<type>input</type>
+					</item>
+				</items>
+			</section>
+		</sections>
+	</settings>
 </addon>
