@@ -2,7 +2,6 @@
 <addon scheme="2.0" edition_type="ROOT,ULT:VENDOR">
 	<id>lib_js_breakpoints</id>
 	<version>1.0</version>
-	<default_language>en</default_language>
 	<name>Library - JS Breakpoints</name>
 	<description><![CDATA[DEPENDENCY ADDON: Uses CSS breakpoints to apply attributes to HTML for Javascript to use, on the fly. Requires underscore/lodash. <a href="https://github.com/dhaupin/cs-cart-lib_underscore_js" target="_blank">Found here.</a>]]></description>
 	<priority>10</priority>
