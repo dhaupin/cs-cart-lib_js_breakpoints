@@ -1,14 +1,20 @@
 <?xml version="1.0"?>
 <addon scheme="2.0" edition_type="ROOT,ULT:VENDOR">
 	<id>lib_js_breakpoints</id>
-	<version>1.0</version>
+	<version>1.0.0</version>
 	<name>Library - JS Breakpoints</name>
 	<description><![CDATA[DEPENDENCY ADDON: Uses CSS breakpoints to apply attributes to HTML for Javascript to use, on the fly. Requires underscore/lodash. <a href="https://github.com/dhaupin/cs-cart-lib_underscore_js" target="_blank">Found here.</a>]]></description>
 	<priority>10</priority>
 	<position>0</position>
 	<status>active</status>
 	<default_language>en</default_language>
-	<dependencies>lib_underscore_js</dependencies>
+	<compatibility>
+		<core_version>
+			<min>4.3.4</min>
+			<!-- Untested below v4.3.4 -->
+		</core_version>
+		<dependencies>lib_underscore_js</dependencies>
+	</compatibility>
 	<authors>
 		<author>
 			<name>Dhaupin - CreadevDotOrg</name>
@@ -16,12 +22,8 @@
 			<url>https://creadev.org</url>
 		</author>
 	</authors>
-	<!--Prepend or append the common tab list with add-on tabs (default defined as append)-->
-	<tab_order>prepend</tab_order>
-
 	<settings layout="popup">
 		<sections>
-			<!-- @id - Registry::get('addons.addon_id.setting_id') -->
 			<section id="main">
 				<name>Global</name>
 				<items>
